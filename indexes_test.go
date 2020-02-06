@@ -94,11 +94,6 @@ func TestIndex(t *testing.T) {
 	}
 }
 
-type House struct {
-	Name  string
-	Price int64
-}
-
 var houses = []House{
 	{Name: "Center1", Price: 200_000},
 	{Name: "Center2", Price: 250_000},

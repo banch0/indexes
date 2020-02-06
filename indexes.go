@@ -1,5 +1,11 @@
 package main
 
+// House ...
+type House struct {
+	Name  string
+	Price int64
+}
+
 // Index ...
 func Index(slice []House, predicate func(House) bool) int {
 	for i, elem := range slice {
