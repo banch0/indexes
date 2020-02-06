@@ -1,4 +1,4 @@
-package indexes
+package main
 
 import (
 	"testing"
@@ -101,6 +101,13 @@ func TestFind(t *testing.T) {
 			}
 			return false
 		}, 14},
+
+		{"TestFind must not find element and return 0", []int{23, 14, 86, 67, 93}, func(i int) bool {
+			if i == 95 {
+				return true
+			}
+			return false
+		}, 0},
 	}
 
 	for _, tt := range tests {

@@ -1,4 +1,4 @@
-package indexes
+package main
 
 // Index ...
 func Index(slice []int, predicate func(int) bool) int {
@@ -29,7 +29,15 @@ func None(slice []int, predicate func(int) bool) bool {
 
 // Find ...
 func Find(slice []int, predicate func(int) bool) int {
-	return slice[Index(slice, predicate)]
+	result := Index(slice, predicate)
+	if result == -1 {
+		return 0
+	}
+	return slice[result]
 }
 
 func main() {}
+
+func nulls(i int) bool {
+	return true
+}
