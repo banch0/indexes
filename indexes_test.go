@@ -103,13 +103,13 @@ var houses = []House{
 
 func TestFind(t *testing.T) {
 	want := House{Name: "Center1", Price: 200_000}
-	notFind := House{}
+	notFind := House{Name: "Center9"}
 
 	tests := []struct {
 		name      string
 		datas     []House
 		predicate func(House) bool
-		want      House
+		want      interface{}
 	}{
 		{
 			name:  "Test Find must return",
@@ -126,17 +126,18 @@ func TestFind(t *testing.T) {
 			name:  "Test Find must return 2",
 			datas: houses,
 			predicate: func(h House) bool {
-				if h != notFind {
-					return false
+				if h == notFind {
+					return true
 				}
-				return true
+				return false
 			},
-			want: notFind,
+			want: nil,
 		},
 	}
 
 	for _, test := range tests {
-		if got := Finds(test.datas, test.predicate); got != test.want {
+		if got, _ := Finds(test.datas, test.predicate); got != test.want {
+			t.Log(got)
 			t.Errorf("Name: %s got: %v and want %v", test.name, got, test.want)
 		}
 	}

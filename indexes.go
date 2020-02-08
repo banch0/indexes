@@ -1,5 +1,9 @@
 package main
 
+import (
+	"errors"
+)
+
 // House ...
 type House struct {
 	Name  string
@@ -34,12 +38,12 @@ func None(slice []House, predicate func(House) bool) bool {
 }
 
 // Finds ...
-func Finds(slice []House, predicate func(House) bool) House {
+func Finds(slice []House, predicate func(House) bool) (interface{}, error) {
 	result := Index(slice, predicate)
 	if result == -1 {
-		return House{}
+		return nil, errors.New("not found")
 	}
-	return slice[result]
+	return slice[result], nil
 }
 
 func main() {}
